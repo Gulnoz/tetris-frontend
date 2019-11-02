@@ -8,21 +8,21 @@ export default class TetrisWindow extends React.Component{
     componentDidMount(){
         //let canvasRef = React.useRef(null)
        
-        this.boxHendler()
-        this.boxHendler()
+        this.boxHendler(0,0)
+        this.boxHendler(0,0)
        
-        setInterval(this.hendler,1000)
+        setInterval(this.hendler,500)
     }
 
     ctxHendler=()=>{
         let canvas = this.refs.canvas
         return canvas.getContext("2d")
     }
-    boxHendler=()=>{
+    boxHendler=(x,y)=>{
         let ctx = this.ctxHendler()
         ctx.fillStyle = 'yellow'
-        ctx.fillRect(this.state.ctx[0], this.state.ctx[1], this.state.ctx[2], this.state.ctx[3])
-        ctx.strokeRect(this.state.ctx[0], this.state.ctx[1], this.state.ctx[2], this.state.ctx[3])
+        ctx.fillRect(this.state.ctx[0]+x, this.state.ctx[1]+y, this.state.ctx[2], this.state.ctx[3])
+        ctx.strokeRect(this.state.ctx[0]+x, this.state.ctx[1]+y, this.state.ctx[2], this.state.ctx[3])
         ctx.lineWidth = 1
         ctx.strokeStyle = 'black'
     }
@@ -36,18 +36,41 @@ export default class TetrisWindow extends React.Component{
     }
 
     componentDidUpdate(){
-        // let canvas = this.refs.canvas
-        // let ctx = canvas.getContext("2d")
-        // ctx.fillStyle = 'yellow'
+        
+        this.boxHendler(0, 0)
+        this.boxHendler(25, 0)
+        this.boxHendler(25, 25)
+        this.boxHendler(50, 25)
+        
+        // this.boxHendler(0,0)
+        // this.boxHendler(25,0)
+        // this.boxHendler(0, 25)
+        // this.boxHendler(25, 25)
 
+        // this.boxHendler(0, 0)
+        // this.boxHendler(25, 0)
+        // this.boxHendler(25, 25)
+        // this.boxHendler(50, 25)
 
-        // ctx.fillRect(this.state.ctx[0], this.state.ctx[1], this.state.ctx[2], this.state.ctx[3])
-        // ctx.strokeRect(this.state.ctx[0], this.state.ctx[1], this.state.ctx[2], this.state.ctx[3])
-        // ctx.lineWidth = 1
-        // ctx.strokeStyle = 'black'
-        this.boxHendler()
-        this.boxHendler()
-       
+        // this.boxHendler(0, 0)
+        // this.boxHendler(25, 0)
+        // this.boxHendler(25, 50)
+        // this.boxHendler(25, 25)
+
+        // this.boxHendler(50, 0)
+        // this.boxHendler(25, 0)
+        // this.boxHendler(0, 25)
+        // this.boxHendler(25, 25)
+
+        // this.boxHendler(0, 0)
+        // this.boxHendler(0, 25)
+        // this.boxHendler(0, 50)
+        // this.boxHendler(0, 75)
+
+        // this.boxHendler(50, 0)
+        // this.boxHendler(75, 0)
+        // this.boxHendler(100, 0)
+        // this.boxHendler(125, 0)
     }
    
 render(){
