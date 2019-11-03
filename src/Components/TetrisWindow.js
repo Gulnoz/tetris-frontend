@@ -11,7 +11,8 @@ export default class TetrisWindow extends React.Component{
         this.boxHendler(0,0)
         this.boxHendler(0,0)
        
-        setInterval(this.hendler,500)
+        setInterval(() => this.state.ctx[1] <= 300 ? this.hendler() : null,50)
+       
     }
 
     ctxHendler=()=>{
@@ -27,21 +28,23 @@ export default class TetrisWindow extends React.Component{
         ctx.strokeStyle = 'black'
     }
     hendler=()=>{
-        console.log('hendelr')
+        console.log(this.state.ctx[1])
+        if ((this.state.ctx[1]) <= 300) {
         let ctx =this.ctxHendler()
-        ctx.clearRect(0,0,550,400)
+        ctx.clearRect(0,0,300,400)
         this.setState({
             ctx: [25, this.state.ctx[1]+5, 25, 25]
         })
     }
+    }
 
     componentDidUpdate(){
         
-        this.boxHendler(0, 0)
-        this.boxHendler(25, 0)
-        this.boxHendler(25, 25)
-        this.boxHendler(50, 25)
-        
+        // this.boxHendler(0, 0)
+        // this.boxHendler(25, 0)
+        // this.boxHendler(25, 25)
+        // this.boxHendler(50, 25)
+
         // this.boxHendler(0,0)
         // this.boxHendler(25,0)
         // this.boxHendler(0, 25)
@@ -62,22 +65,26 @@ export default class TetrisWindow extends React.Component{
         // this.boxHendler(0, 25)
         // this.boxHendler(25, 25)
 
-        // this.boxHendler(0, 0)
-        // this.boxHendler(0, 25)
-        // this.boxHendler(0, 50)
-        // this.boxHendler(0, 75)
+        this.boxHendler(0, 0)
+        this.boxHendler(0, 25)
+        this.boxHendler(0, 50)
+        this.boxHendler(0, 75)
 
         // this.boxHendler(50, 0)
         // this.boxHendler(75, 0)
         // this.boxHendler(100, 0)
         // this.boxHendler(125, 0)
     }
-   
+   rotateToRight=()=>{
+       let ctx=this.ctxHendler()
+       ctx.clearRect(0, 0, 300, 400)
+       ctx.rotate( 180 * Math.PI / 180);
+   }
 render(){
 return(
    <>
-    <canvas ref="canvas" width={550} height={400} />
-    <div><button onClick={this.hendler}>get box</button></div>
+        <canvas style={{ border: 'solid 5px black'}}ref="canvas" width={300} height={400} />
+       <button onClick={this.rotateToRight}>Rotate</button>
     </>
 )
 
